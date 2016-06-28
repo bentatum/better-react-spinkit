@@ -1,0 +1,107 @@
+{
+  "name": "better-react-spinkit",
+  "description": "A collection of loading indicators animated with CSS for React",
+  "version": "1.2.3",
+  "author": "Ben Tatum <bentatum@me.com>",
+  "scripts": {
+    "lint": "standard",
+    "prebuild": "rm -rf dist",
+    "build": "babel -d dist/ src/",
+    "prepublish": "npm run lint && npm run test && npm run build",
+    "test": "npm run lint && mocha spec --compilers js:babel-register"
+  },
+  "bugs": {
+    "url": "https://github.com/bentatum/better-react-spinkit/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-eslint": "^6.0.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.4.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-1": "^6.3.13",
+    "commitizen": "^2.8.2",
+    "eslint-plugin-jsx-control-statements": "^2.1.1",
+    "expect": "^1.16.0",
+    "ghooks": "^1.2.4",
+    "jsx-control-statements": "^3.1.2",
+    "mocha": "^2.4.5",
+    "react": "^15.1.0",
+    "react-addons-test-utils": "^15.0.1",
+    "standard": "^7.1.0",
+    "validate-commit-msg": "^2.6.1"
+  },
+  "homepage": "https://github.com/bentatum/better-react-spinkit",
+  "keywords": [
+    "react",
+    "react-component",
+    "spinkit",
+    "spinners",
+    "loaders",
+    "loading",
+    "icon",
+    "waiting",
+    "react loaders",
+    "react loading",
+    "react loading gif",
+    "react loading indicator",
+    "react spinners"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bentatum/better-react-spinkit.git"
+  },
+  "dependencies": {
+    "lodash.memoize": "^4.0.3",
+    "lodash.omitby": "^4.3.0",
+    "lodash.range": "^3.1.4",
+    "react-fade": "0.0.3",
+    "react-prefixr": "^0.1.0"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ],
+    "plugins": [
+      "jsx-control-statements",
+      "transform-decorators-legacy"
+    ]
+  },
+  "standard": {
+    "globals": [
+      "$",
+      "beforeEach",
+      "describe",
+      "it",
+      "Choose",
+      "Otherwise",
+      "When"
+    ],
+    "parser": "babel-eslint"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "issue",
+        "master",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100,
+      "subjectPattern": ".+",
+      "subjectPatternErrorMsg": "subject does not match subject pattern!",
+      "helpMessage": ""
+    }
+  }
+}
