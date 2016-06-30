@@ -1,26 +1,28 @@
 import { default as React, PropTypes } from 'react'
 import { default as animate } from './animate'
-import { color as defaultColor, size as defaultSize, propTypes } from './defaults'
-import { default as Container } from './Container'
+import { color as defaultColor, contextTypes } from './defaults'
+import { default as Base } from './Base'
 
-const ChasingDots = ({ color, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'ChasingDots'
+const name = 'brsk-chasing-dots'
+const defaultSize = 18
+
+const ChasingDots = ({ color, dotSize, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
   const finalSize = size || betterReactSpinkit.size || defaultSize
   const outer = {
-    ...animate({ name: `${name}Rotate` }),
+    ...animate({ name: `${name}-rotate` }),
     height: finalSize,
     position: 'relative',
     width: finalSize
   }
   const dot = {
-    ...animate({ name: `${name}Bounce` }),
+    ...animate({ name: `${name}-bounce` }),
     backgroundColor: color || betterReactSpinkit.color || defaultColor,
     borderRadius: '100%',
     display: 'inline-block',
-    height: '60%',
+    height: dotSize,
     position: 'absolute',
     top: 0,
-    width: '60%'
+    width: dotSize
   }
   const dotTwo = {
     ...dot,
@@ -29,38 +31,38 @@ const ChasingDots = ({ color, scaleEnd, scaleStart, size, ...props }, { betterRe
     top: 'auto'
   }
   return (
-    <Container
+    <Base
       css={`
-        @-webkit-keyframes ${name}Rotate {
+        @-webkit-keyframes ${name}-rotate {
           100% {
             -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
           }
         }
-
-        @keyframes ${name}Rotate {
+        @keyframes ${name}-rotate {
           100% {
-            transform: rotate(360deg);
             -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
           }
         }
-
-        @-webkit-keyframes ${name}Bounce {
+        @-webkit-keyframes ${name}-bounce {
           0%, 100% {
             -webkit-transform: scale(${scaleStart});
+                    transform: scale(${scaleStart});
           }
           50% {
             -webkit-transform: scale(${scaleEnd});
+                    transform: scale(${scaleEnd});
           }
         }
-
-        @keyframes ${name}Bounce {
+        @keyframes ${name}-bounce {
           0%, 100% {
-            transform: scale(${scaleStart});
             -webkit-transform: scale(${scaleStart});
+                    transform: scale(${scaleStart});
           }
           50% {
-            transform: scale(${scaleEnd});
             -webkit-transform: scale(${scaleEnd});
+                    transform: scale(${scaleEnd});
           }
         }
       `}
@@ -70,23 +72,24 @@ const ChasingDots = ({ color, scaleEnd, scaleStart, size, ...props }, { betterRe
         <div style={dot} />
         <div style={dotTwo} />
       </div>
-    </Container>
+    </Base>
   )
 }
 
-ChasingDots.contextTypes = {
-  betterReactSpinkit: PropTypes.object
-}
+ChasingDots.contextTypes = contextTypes
 
 ChasingDots.defaultProps = {
+  dotSize: '45%',
   scaleEnd: 1,
   scaleStart: 0
 }
 
 ChasingDots.propTypes = {
-  ...propTypes,
+  color: PropTypes.string,
+  dotSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   scaleEnd: PropTypes.number,
-  scaleStart: PropTypes.number
+  scaleStart: PropTypes.number,
+  size: PropTypes.number
 }
 
 export default ChasingDots

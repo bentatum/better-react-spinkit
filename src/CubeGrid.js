@@ -1,9 +1,12 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, size as defaultSize, propTypes } from './defaults'
+import { color as defaultColor, contextTypes } from './defaults'
 import { default as range } from 'lodash.range'
 import { default as animate } from './animate'
-import { default as Container } from './Container'
+import { default as Base } from './Base'
 import { default as memoize } from 'lodash.memoize'
+
+const name = 'brsk-cube-grid'
+const defaultSize = 16
 
 const randomDelays = (total) => {
   const delays = []
@@ -15,8 +18,7 @@ const randomDelays = (total) => {
 
 const memoizedRandomDelays = memoize(randomDelays)
 
-const CubeGrid = ({ color, cols, size, rows, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'CubeGrid'
+const CubeGrid = ({ color, col, size, row, ...props }, { betterReactSpinkit = {} }) => {
   const finalSize = size || betterReactSpinkit.size || defaultSize
   const grid = {
     display: 'flex',
@@ -27,31 +29,35 @@ const CubeGrid = ({ color, cols, size, rows, ...props }, { betterReactSpinkit = 
   const cube = {
     ...animate({ name }),
     backgroundColor: color || betterReactSpinkit.color || defaultColor,
-    height: `${(100 / rows)}%`,
-    width: `${(100 / cols)}%`
+    height: `${(100 / row)}%`,
+    width: `${(100 / col)}%`
   }
-  const total = rows * cols
+  const total = row * col
+  if (total > 1000) {
+    return null
+  }
   const delays = memoizedRandomDelays(total)
   return (
-    <Container
+    <Base
       css={`
         @-webkit-keyframes ${name} {
           0%, 70%, 100% {
-            -webkit-transform:scale3D(1.0, 1.0, 1.0);
+            -webkit-transform: scale3D(1, 1, 1);
+                    transform: scale3D(1, 1, 1);
           }
           35% {
-            -webkit-transform:scale3D(0.0, 0.0, 1.0);
+            -webkit-transform: scale3D(0, 0, 1);
+                    transform: scale3D(0, 0, 1);
           }
         }
-
         @keyframes ${name} {
           0%, 70%, 100% {
-            -webkit-transform:scale3D(1.0, 1.0, 1.0);
-            transform:scale3D(1.0, 1.0, 1.0);
+            -webkit-transform: scale3D(1, 1, 1);
+                    transform: scale3D(1, 1, 1);
           }
           35% {
-            -webkit-transform:scale3D(1.0, 1.0, 1.0);
-            transform:scale3D(0.0, 0.0, 1.0);
+            -webkit-transform: scale3D(0, 0, 1);
+                    transform: scale3D(0, 0, 1);
           }
         }
       `}
@@ -70,23 +76,22 @@ const CubeGrid = ({ color, cols, size, rows, ...props }, { betterReactSpinkit = 
           />
         )}
       </div>
-    </Container>
+    </Base>
   )
 }
 
-CubeGrid.contextTypes = {
-  betterReactSpinkit: PropTypes.object
-}
+CubeGrid.contextTypes = contextTypes
 
 CubeGrid.defaultProps = {
-  cols: 3,
-  rows: 3
+  col: 3,
+  row: 3
 }
 
 CubeGrid.propTypes = {
-  ...propTypes,
-  cols: PropTypes.number.isRequired,
-  rows: PropTypes.number.isRequired
+  color: PropTypes.string,
+  col: PropTypes.number,
+  row: PropTypes.number,
+  size: PropTypes.number
 }
 
 export default CubeGrid

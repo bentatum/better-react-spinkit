@@ -1,10 +1,12 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, size as defaultSize, propTypes } from './defaults'
+import { color as defaultColor, contextTypes } from './defaults'
 import { default as animate } from './animate'
-import { default as Container } from './Container'
+import { default as Base } from './Base'
 
-const WanderingCubes = ({ color, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'WanderingCubes'
+const defaultSize = 16
+
+const WanderingCubes = ({ color, cubeSize, duration, size, ...props }, { betterReactSpinkit = {} }) => {
+  const name = 'brsk-wandering-cubes'
   const finalSize = size || betterReactSpinkit.size || defaultSize
   const outer = {
     height: finalSize,
@@ -12,58 +14,39 @@ const WanderingCubes = ({ color, size, ...props }, { betterReactSpinkit = {} }) 
     width: finalSize
   }
   const cube = {
-    ...animate({ name }),
+    ...animate({ name, duration }),
     backgroundColor: color || betterReactSpinkit.color || defaultColor,
-    height: 10,
+    height: cubeSize,
+    left: 0,
     position: 'absolute',
-    width: 10
+    top: 0,
+    width: cubeSize
   }
-  const twentyFivePercent = 'translateX(22px) rotate(-90deg) scale(0.5)'
-  const fiftyPercent = 'translateX(22px) translateY(22px) rotate(-180deg)'
-  const seventyFivePercent = 'translateX(0px) translateY(22px) rotate(-270deg) scale(0.5)'
-  const altTwentyFivePercent = 'translateX(42px) rotate(-90deg) scale(0.5)'
-  const altFiftyPercent = 'translateX(42px) translateY(42px) rotate(-179deg)'
-  const fiftyOnePercent = 'translateX(42px) translateY(42px) rotate(-180deg)'
-  const altSeventyFivePercent = 'translateX(0px) translateY(42px) rotate(-270deg) scale(0.5)'
   return (
-    <Container
+    <Base
       css={`
         @-webkit-keyframes ${name} {
-          25% {
-            -webkit-transform: ${twentyFivePercent};
-          }
-          50% {
-            -webkit-transform: ${fiftyPercent};
-          }
-          75% {
-            -webkit-transform: ${seventyFivePercent};
-          }
-          100% {
-            -webkit-transform: rotate(-360deg);
-          }
+          25% { -webkit-transform: translateX(${finalSize}px) rotate(-90deg) scale(0.5) }
+          50% { -webkit-transform: translateX(${finalSize}px) translateY(${finalSize}px) rotate(-180deg) }
+          75% { -webkit-transform: translateX(0px) translateY(${finalSize}px) rotate(-270deg) scale(0.5) }
+          100% { -webkit-transform: rotate(-360deg) }
         }
-
         @keyframes ${name} {
-          25% {
-            transform: ${altTwentyFivePercent};
-            -webkit-transform: ${altTwentyFivePercent};
-          }
-          50% {
-            /* Hack to make FF rotate in the right direction */
-            transform: ${altFiftyPercent};
-            -webkit-transform: ${altFiftyPercent};
-          }
-          50.1% {
-            transform: ${fiftyOnePercent};
-            -webkit-transform: ${fiftyOnePercent};
-          }
-          75% {
-            transform: ${altSeventyFivePercent};
-            -webkit-transform: ${altSeventyFivePercent};
-          }
-          100% {
-            transform: rotate(-360deg);
+          25% { 
+            -webkit-transform: translateX(${finalSize}px) rotate(-90deg) scale(0.5);
+                    transform: translateX(${finalSize}px) rotate(-90deg) scale(0.5);
+          } 50% { 
+            -webkit-transform: translateX(${finalSize}px) translateY(${finalSize}px) rotate(-179deg);
+                    transform: translateX(${finalSize}px) translateY(${finalSize}px) rotate(-179deg);
+          } 50.1% { 
+            -webkit-transform: translateX(${finalSize}px) translateY(${finalSize}px) rotate(-180deg);
+                    transform: translateX(${finalSize}px) translateY(${finalSize}px) rotate(-180deg);
+          } 75% { 
+            -webkit-transform: translateX(0px) translateY(${finalSize}px) rotate(-270deg) scale(0.5);
+                    transform: translateX(0px) translateY(${finalSize}px) rotate(-270deg) scale(0.5);
+          } 100% { 
             -webkit-transform: rotate(-360deg);
+                    transform: rotate(-360deg);
           }
         }
       `}
@@ -84,16 +67,22 @@ const WanderingCubes = ({ color, size, ...props }, { betterReactSpinkit = {} }) 
           }}
         />
       </div>
-    </Container>
+    </Base>
   )
 }
 
-WanderingCubes.contextTypes = {
-  betterReactSpinkit: PropTypes.object
-}
+WanderingCubes.contextTypes = contextTypes
 
 WanderingCubes.propTypes = {
-  ...propTypes
+  color: PropTypes.string,
+  size: PropTypes.number,
+  cubeSize: PropTypes.number,
+  duration: PropTypes.string
+}
+
+WanderingCubes.defaultProps = {
+  cubeSize: 7,
+  duration: '2s'
 }
 
 export default WanderingCubes

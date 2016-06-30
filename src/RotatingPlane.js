@@ -1,41 +1,42 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, size as defaultSize, propTypes } from './defaults'
+import { color as defaultColor, contextTypes } from './defaults'
 import { default as animate } from './animate'
-import { default as Container } from './Container'
+import { default as Base } from './Base'
 
-const RotatingPlane = ({ color, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'RotatingPlane'
-  const zeroPercent = 'perspective(120px) rotateX(0deg) rotateY(0deg)'
-  const fiftyPercent = 'perspective(120px) rotateX(-180.1deg) rotateY(0deg)'
-  const oneHundredPercent = 'perspective(120px) rotateX(-180deg) rotateY(-179.9deg)'
+const defaultSize = 16
+
+const RotatingPlane = ({ color, duration, size, ...props }, { betterReactSpinkit = {} }) => {
+  const name = 'brsk-rotating-plane'
   const finalSize = size || betterReactSpinkit.size || defaultSize
   return (
-    <Container
+    <Base
       css={`
         @-webkit-keyframes ${name} {
           0% {
-            -webkit-transform: ${zeroPercent};
+            -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
           }
           50% {
-            -webkit-transform: ${fiftyPercent};
+            -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
           }
           100% {
-            -webkit-transform: ${oneHundredPercent};
+            -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
           }
         }
-
         @keyframes ${name} {
           0% {
-            transform: ${zeroPercent};
-            -webkit-transform: ${zeroPercent};
+            -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
           }
           50% {
-            transform: ${fiftyPercent};
-            -webkit-transform: ${fiftyPercent};
+            -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
           }
           100% {
-            transform: ${oneHundredPercent};
-            -webkit-transform: ${oneHundredPercent};
+            -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
           }
         }
       `}
@@ -43,22 +44,26 @@ const RotatingPlane = ({ color, size, ...props }, { betterReactSpinkit = {} }) =
     >
       <div
         style={{
-          ...animate({ name }),
+          ...animate({ name, duration }),
           backgroundColor: color || betterReactSpinkit.color || defaultColor,
           height: finalSize,
           width: finalSize
         }}
       />
-    </Container>
+    </Base>
     )
 }
 
-RotatingPlane.contextTypes = {
-  betterReactSpinkit: PropTypes.object
-}
+RotatingPlane.contextTypes = contextTypes
 
 RotatingPlane.propTypes = {
-  ...propTypes
+  color: PropTypes.string,
+  duration: PropTypes.string,
+  size: PropTypes.number
+}
+
+RotatingPlane.defaultProps = {
+  duration: '1.2s'
 }
 
 export default RotatingPlane

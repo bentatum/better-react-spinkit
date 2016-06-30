@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react'
-import animate from './animate'
-import { color as defaultColor, size as defaultSize, propTypes } from './defaults'
-import Container from './Container'
+import { default as React, PropTypes } from 'react'
+import { default as animate } from './animate'
+import { color as defaultColor, contextTypes } from './defaults'
+import { default as Base } from './Base'
+const defaultSize = 10
 
-const ThreeBounce = ({ color, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'ThreeBounce'
+const ThreeBounce = ({ color, gutter, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
+  const name = 'brsk-three-bounce'
   const finalSize = size || betterReactSpinkit.size || defaultSize
   const ball = {
     ...animate({
@@ -18,7 +19,7 @@ const ThreeBounce = ({ color, scaleEnd, scaleStart, size, ...props }, { betterRe
     width: finalSize
   }
   return (
-    <Container
+    <Base
       css={`
         @-webkit-keyframes ${name} {
           0%, 80%, 100% {
@@ -31,11 +32,11 @@ const ThreeBounce = ({ color, scaleEnd, scaleStart, size, ...props }, { betterRe
 
         @keyframes ${name} {
           0%, 80%, 100% {
-            transform: scale(0.0);
+            transform: scale(${scaleStart});
             -webkit-transform: scale(${scaleStart});
           }
           40% {
-            transform: scale(1.0);
+            transform: scale(${scaleEnd});
             -webkit-transform: scale(${scaleEnd});
           }
         }
@@ -45,17 +46,15 @@ const ThreeBounce = ({ color, scaleEnd, scaleStart, size, ...props }, { betterRe
       <div
         style={{
           ...ball,
-          ...animate({
-            delay: '-0.32s'
-          })
+          ...animate({ delay: '-0.32s' }),
+          marginRight: gutter
         }}
       />
       <div
         style={{
           ...ball,
-          ...animate({
-            delay: '-0.16s'
-          })
+          ...animate({ delay: '-0.16s' }),
+          marginRight: gutter
         }}
       />
       <div
@@ -63,21 +62,22 @@ const ThreeBounce = ({ color, scaleEnd, scaleStart, size, ...props }, { betterRe
           ...ball
         }}
       />
-    </Container>
+    </Base>
   )
 }
 
-ThreeBounce.contextTypes = {
-  betterReactSpinkit: PropTypes.object
-}
+ThreeBounce.contextTypes = contextTypes
 
 ThreeBounce.defaultProps = {
   scaleEnd: 0,
-  scaleStart: 1
+  scaleStart: 1,
+  gutter: 1
 }
 
 ThreeBounce.propTypes = {
-  ...propTypes,
+  color: PropTypes.string,
+  size: PropTypes.number,
+  gutter: PropTypes.number,
   scaleEnd: PropTypes.number,
   scaleStart: PropTypes.number
 }

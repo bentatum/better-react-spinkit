@@ -1,34 +1,35 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, size as defaultSize, propTypes } from './defaults'
+import { color as defaultColor, contextTypes } from './defaults'
 import { default as animate } from './animate'
-import { default as Container } from './Container'
+import { default as Base } from './Base'
+const defaultSize = 18
 
-const Wordpress = ({ color, innerColor, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'Wordpress'
-  const defaultInnerSize = 1
-  const innerSize = ((size || betterReactSpinkit.size || defaultInnerSize) / 4)
-  const innerOffset = '18%'
+const Wordpress = ({ color, innerColor, innerSize, size, ...props }, { betterReactSpinkit = {} }) => {
+  const name = 'brsk-wordpress'
   const finalSize = size || betterReactSpinkit.size || defaultSize
+  const finalInnerSize = innerSize || finalSize / 4
+  const innerOffset = '18%'
   return (
-    <Container
+    <Base
       css={`
         @-webkit-keyframes ${name} {
           0% {
             -webkit-transform: rotate(0);
+                    transform: rotate(0);
           }
           100% {
             -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
           }
         }
-
         @keyframes ${name} {
           0% {
-            transform: rotate(0);
-            -webkit-transform:rotate(0);
+            -webkit-transform: rotate(0);
+                    transform: rotate(0);
           }
           100% {
-            transform: rotate(360deg);
-            -webkit-transform:rotate(360deg);
+            -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
           }
         }
       `}
@@ -51,31 +52,31 @@ const Wordpress = ({ color, innerColor, size, ...props }, { betterReactSpinkit =
         <div
           style={{
             backgroundColor: innerColor,
-            borderRadius: innerSize,
+            borderRadius: finalInnerSize,
             display: 'block',
-            height: innerSize,
+            height: finalInnerSize,
             left: innerOffset,
             position: 'absolute',
             top: innerOffset,
-            width: innerSize
+            width: finalInnerSize
           }}
         />
       </div>
-    </Container>
+    </Base>
   )
 }
 
-Wordpress.contextTypes = {
-  betterReactSpinkit: PropTypes.object
-}
+Wordpress.contextTypes = contextTypes
 
 Wordpress.defaultProps = {
   innerColor: '#fff'
 }
 
 Wordpress.propTypes = {
-  ...propTypes,
-  innerColor: PropTypes.string
+  color: PropTypes.string,
+  size: PropTypes.number,
+  innerColor: PropTypes.string,
+  innerSize: PropTypes.number
 }
 
 export default Wordpress

@@ -1,13 +1,15 @@
-import React, { PropTypes } from 'react'
-import { color as defaultColor, size as defaultSize, propTypes } from './defaults'
-import animate from './animate'
-import Container from './Container'
+import { default as React, PropTypes } from 'react'
+import { color as defaultColor, contextTypes } from './defaults'
+import { default as animate } from './animate'
+import { default as Base } from './Base'
 
-const Pulse = ({ color, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'Pulse'
+const name = 'brsk-pulse'
+const defaultSize = 20
+
+const Pulse = ({ color, duration, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
   const finalSize = size || betterReactSpinkit.size || defaultSize
   return (
-    <Container
+    <Base
       css={`
         @-webkit-keyframes ${name} {
           0% {
@@ -18,15 +20,14 @@ const Pulse = ({ color, scaleEnd, scaleStart, size, ...props }, { betterReactSpi
             opacity: 0;
           }
         }
-
         @keyframes ${name} {
           0% {
-            transform: scale(${scaleStart});
             -webkit-transform: scale(${scaleStart});
+                    transform: scale(${scaleStart});
           }
           100% {
-            transform: scale(${scaleEnd});
             -webkit-transform: scale(${scaleEnd});
+                    transform: scale(${scaleEnd});
             opacity: 0;
           }
         }
@@ -35,30 +36,31 @@ const Pulse = ({ color, scaleEnd, scaleStart, size, ...props }, { betterReactSpi
     >
       <div
         style={{
-          ...animate({ name }),
+          ...animate({ name, duration }),
           backgroundColor: color || betterReactSpinkit.color || defaultColor,
           borderRadius: '100%',
           height: finalSize,
           width: finalSize
         }}
       />
-    </Container>
+    </Base>
   )
 }
 
-Pulse.contextTypes = {
-  betterReactSpinkit: PropTypes.object
-}
+Pulse.contextTypes = contextTypes
 
 Pulse.defaultProps = {
+  duration: '1s',
   scaleEnd: 1,
   scaleStart: 0
 }
 
 Pulse.propTypes = {
-  ...propTypes,
+  color: PropTypes.string,
+  duration: PropTypes.string,
   scaleEnd: PropTypes.number,
-  scaleStart: PropTypes.number
+  scaleStart: PropTypes.number,
+  size: PropTypes.number
 }
 
 export default Pulse

@@ -1,7 +1,7 @@
 import { default as React, PropTypes } from 'react'
 import { default as Fade } from 'react-fade'
 
-const SpinKit = ({ css, children, fadeIn, ...props }) =>
+const Base = ({ css, children, fadeIn, ...props }) =>
   <span {...props}>
     <style dangerouslySetInnerHTML={{ __html: css.replace(/\n/g, '').replace(/\s\s+/g, ' ') }} />
     <Choose>
@@ -16,14 +16,14 @@ const SpinKit = ({ css, children, fadeIn, ...props }) =>
     </Choose>
   </span>
 
-SpinKit.propTypes = {
+Base.propTypes = {
   children: PropTypes.node,
   css: PropTypes.string.isRequired,
   fadeIn: PropTypes.bool
 }
 
-SpinKit.defaultProps = {
+Base.defaultProps = {
   fadeIn: true
 }
 
-export default SpinKit
+export default Base
