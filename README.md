@@ -17,22 +17,30 @@ A collection of loading indicators animated with CSS, powered by React.
 `npm i better-react-spinkit`
 
 ## Usage
-
 ```js
-import { ThreeBounce } from 'better-react-spinkit'
+import {
+  ChasingDots,
+  Circle,
+  CubeGrid,
+  DoubleBounce,
+  FadingCircle,
+  FoldingCube,
+  Pulse,
+  RotatingPlane,
+  ThreeBounce,
+  WanderingCubes,
+  Wave
+} from 'better-react-spinkit'
 
-const MyComponent = ({ loading }) =>
-  <If condition={loading}>
-    <ThreeBounce />
-  </If>
-
-export default MyComponent
+// somewhere in a render function ...
+<Circle />
 ```
 
 ## Context Configuration
 Optionally, you can configure size and color props in context to avoid managing configuration on each instance.
 ```js
-import { Component, PropTypes } from 'react'
+import { default as React, Component, PropTypes } from 'react'
+import { ThreeBounce } from 'better-react-spinkit'
 
 class Application extends Component {
   static childContextTypes = {
@@ -46,7 +54,12 @@ class Application extends Component {
       }
     }
   }
-  render () { ... }
+  render () {
+    // Inline props override the contextual settings.
+    return (
+      <ThreeBounce size={15} color='blue' />
+    )
+  }
 }
 ```
 
