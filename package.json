@@ -1,7 +1,7 @@
 {
   "name": "better-react-spinkit",
   "description": "A collection of loading indicators animated with CSS for React",
-  "version": "3.0.0-0",
+  "version": "3.0.1-0",
   "author": "Ben Tatum <bentatum@me.com>",
   "scripts": {
     "lint": "standard",
