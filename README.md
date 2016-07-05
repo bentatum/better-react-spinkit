@@ -11,22 +11,41 @@
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
+A collection of loading indicators animated with CSS, powered by React.
 
-
-## Installation
+## Install
 `npm i better-react-spinkit`
 
-## Configuration
-Globally configure size and color to avoid having to set them on every instance.
-```javascript
-import { Component, PropTypes } from 'react'
+## Usage
+```js
+import {
+  ChasingDots,
+  Circle,
+  CubeGrid,
+  DoubleBounce,
+  FadingCircle,
+  FoldingCube,
+  Pulse,
+  RotatingPlane,
+  ThreeBounce,
+  WanderingCubes,
+  Wave
+} from 'better-react-spinkit'
 
-class ParentComponent extends Component {
+// somewhere in a render function ...
+<Circle />
+```
 
+## Context Configuration
+Optionally, you can configure size and color props in context to avoid managing configuration on each instance.
+```js
+import { default as React, Component, PropTypes } from 'react'
+import { ThreeBounce } from 'better-react-spinkit'
+
+class Application extends Component {
   static childContextTypes = {
     betterReactSpinkit: PropTypes.object
   };
-  
   getChildContext () {
     return {
       betterReactSpinkit: {
@@ -35,15 +54,21 @@ class ParentComponent extends Component {
       }
     }
   }
-  
-  render () { ... }
+  render () {
+    // Inline props override the contextual settings.
+    return (
+      <ThreeBounce size={15} color='blue' />
+    )
+  }
 }
 ```
 
-## Usage
-```javascript
-import { DoubleBounce } from 'better-react-spinkit'
-<DoubleBounce size={50}/>
-```
+## Contributing
 
-See more examples on the [demo page](http://benjamintatum.com/better-react-spinkit).
+Contributions welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.
+
+## License
+
+[ISC](LICENSE.md)
+
+See the whole library in action [here](http://benjamintatum.com/better-react-spinkit).
