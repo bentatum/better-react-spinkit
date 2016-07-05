@@ -1,11 +1,8 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, propTypes, contextTypes } from './defaults'
 import { default as range } from 'lodash.range'
 import { default as prefixr } from 'react-prefixr'
-import { default as animate } from './animate'
 import { default as Base } from './Base'
-
-const defaultSize = 18
+import { animate, defaults, preside } from './util'
 
 const rotate = [
   0,
@@ -49,8 +46,8 @@ const innerCircle = {
   width: '100%'
 }
 
-const BaseCircle = ({ color, name, size, ...props }, { betterReactSpinkit = {} }) => {
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+const BaseCircle = ({ color, defaultSize, name, size, ...props }, { betterReactSpinkit = {} }) => {
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
     height: finalSize,
     position: 'relative',
@@ -83,7 +80,7 @@ const BaseCircle = ({ color, name, size, ...props }, { betterReactSpinkit = {} }
                 ...animate({
                   delay: `-${delays[index]}s`
                 }),
-                backgroundColor: color || betterReactSpinkit.color || defaultColor
+                backgroundColor: preside(color, betterReactSpinkit.color, defaults.color)
               }}
             />
           </div>
@@ -93,12 +90,14 @@ const BaseCircle = ({ color, name, size, ...props }, { betterReactSpinkit = {} }
   )
 }
 
-BaseCircle.contextTypes = contextTypes
+BaseCircle.contextTypes = defaults.contextTypes
 
 BaseCircle.propTypes = {
-  ...propTypes,
+  color: PropTypes.string,
   css: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  defaultSize: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  size: PropTypes.number
 }
 
 export default BaseCircle

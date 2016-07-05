@@ -1,40 +1,14 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as animate } from './animate'
-import { default as Base } from './Base'
+import { default as Base } from '../Base'
 import { default as range } from 'lodash.range'
+import { animate, animationName, defaults, preside } from '../util'
+import { default as cubeRotateZ } from './cubeRotateZ'
+import { default as cubeDelay } from './cubeDelay'
+const defaultSize = 18
 
-const defaultSize = 25
-
-function cubeRotateZ (i) {
-  switch (i) {
-    case 1:
-      return '90deg'
-    case 3:
-      return '180deg'
-    case 2:
-      return '270deg'
-    default:
-      return false
-  }
-}
-
-function cubeDelay (i) {
-  switch (i) {
-    case 1:
-      return '0.3s'
-    case 3:
-      return '0.6s'
-    case 2:
-      return '0.9s'
-    default:
-      return false
-  }
-}
-
-const FoldingCube = ({ color, duration, fillMode, secondBounceDelay, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'brsk-folding-cube'
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+const FoldingCube = ({ color, duration, secondBounceDelay, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {
+  const name = animationName('folding-cube')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
     height: finalSize,
     padding: finalSize / 4,
@@ -59,7 +33,7 @@ const FoldingCube = ({ color, duration, fillMode, secondBounceDelay, size, timin
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: color || betterReactSpinkit.color || defaultColor,
+    backgroundColor: preside(color, betterReactSpinkit.color, defaults.color),
     WebkitTransformOrigin: '100% 100%',
     MsTransformOrigin: '100% 100%',
     TransformOrigin: '100% 100%'
@@ -131,20 +105,28 @@ const FoldingCube = ({ color, duration, fillMode, secondBounceDelay, size, timin
   )
 }
 
-FoldingCube.contextTypes = contextTypes
+FoldingCube.contextTypes = defaults.contextTypes
 
 FoldingCube.defaultProps = {
   duration: '2.4s',
-  fillMode: 'both',
+  size: defaultSize,
   timingFunction: 'linear'
 }
 
 FoldingCube.propTypes = {
+  /**
+   * The color of the spinner.
+   */
   color: PropTypes.string,
+  /**
+   * The duration of the animation.
+   */
   duration: PropTypes.string,
-  fillMode: PropTypes.oneOf(['none', 'forwards', 'backwards', 'both']),
+  /**
+   * The size of the spinner.
+   */
   size: PropTypes.number,
-  timingFunction: PropTypes.string
+  timingFunction: PropTypes.oneOf(['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'])
 }
 
 export default FoldingCube

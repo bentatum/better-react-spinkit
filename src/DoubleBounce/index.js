@@ -1,13 +1,11 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as animate } from './animate'
-import { default as Base } from './Base'
-
+import { animate, animationName, defaults, preside } from '../util'
+import { default as Base } from '../Base'
 const defaultSize = 18
 
-const DoubleBounce = ({ color, duration, scaleEnd, scaleStart, secondBounceDelay, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'brsk-double-bounce'
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+const DoubleBounce = ({ color, duration, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
+  const name = animationName('double-bounce')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
     height: finalSize,
     position: 'relative',
@@ -15,7 +13,7 @@ const DoubleBounce = ({ color, duration, scaleEnd, scaleStart, secondBounceDelay
   }
   const ball = {
     ...animate({ name, duration }),
-    backgroundColor: color || betterReactSpinkit.color || defaultColor,
+    backgroundColor: preside(color, betterReactSpinkit.color, defaults.color),
     borderRadius: '100%',
     height: '100%',
     opacity: 0.6,
@@ -56,7 +54,7 @@ const DoubleBounce = ({ color, duration, scaleEnd, scaleStart, secondBounceDelay
           style={{
             ...ball,
             ...animate({
-              delay: secondBounceDelay
+              delay: '-1s'
             })
           }}
         />
@@ -65,22 +63,36 @@ const DoubleBounce = ({ color, duration, scaleEnd, scaleStart, secondBounceDelay
   )
 }
 
-DoubleBounce.contextTypes = contextTypes
+DoubleBounce.contextTypes = defaults.contextTypes
 
 DoubleBounce.defaultProps = {
   duration: '2s',
   scaleEnd: 1,
   scaleStart: 0,
-  secondBounceDelay: '-1.0s'
+  size: defaultSize
 }
 
 DoubleBounce.propTypes = {
+  /**
+   * The color of the spinner.
+   */
   color: PropTypes.string,
+  /**
+   * The duration of the animation.
+   */
   duration: PropTypes.string,
+  /**
+   * End the animation with dots at x times the size value.
+   */
   scaleEnd: PropTypes.number,
+  /**
+   * Start the animation with dots at x times the size value.
+   */
   scaleStart: PropTypes.number,
-  size: PropTypes.number,
-  secondBounceDelay: PropTypes.string
+  /**
+   * The size of the spinner.
+   */
+  size: PropTypes.number
 }
 
 export default DoubleBounce

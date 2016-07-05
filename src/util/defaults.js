@@ -13,4 +13,3 @@ export const propTypes = {
 }
 
 export const color = '#333'
-export const size = 24

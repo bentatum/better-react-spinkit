@@ -1,21 +1,21 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as animate } from './animate'
-import { default as Base } from './Base'
-
+import { default as Base } from '../Base'
+import { animate, animationName, defaults, preside } from '../util'
 const defaultSize = 16
 
-const WanderingCubes = ({ color, cubeSize, duration, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'brsk-wandering-cubes'
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+const WanderingCubes = ({ color, cubeSize, duration, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {
+  const name = animationName('wandering-cubes')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
     height: finalSize,
+    paddingBottom: cubeSize,
+    paddingRight: cubeSize,
     position: 'relative',
     width: finalSize
   }
   const cube = {
-    ...animate({ name, duration }),
-    backgroundColor: color || betterReactSpinkit.color || defaultColor,
+    ...animate({ name, duration, timingFunction }),
+    backgroundColor: preside(color, betterReactSpinkit.color, defaults.color),
     height: cubeSize,
     left: 0,
     position: 'absolute',
@@ -71,18 +71,33 @@ const WanderingCubes = ({ color, cubeSize, duration, size, ...props }, { betterR
   )
 }
 
-WanderingCubes.contextTypes = contextTypes
+WanderingCubes.contextTypes = defaults.contextTypes
 
 WanderingCubes.propTypes = {
+  /**
+   *  The color of the spinner.
+   */
   color: PropTypes.string,
-  size: PropTypes.number,
+  /**
+   *  Maximum size of the cubes
+   */
   cubeSize: PropTypes.number,
-  duration: PropTypes.string
+  /**
+   *  The duration of the animation.
+   */
+  duration: PropTypes.string,
+  /**
+   *  The size of the spinner.
+   */
+  size: PropTypes.number,
+  timingFunction: PropTypes.oneOf(['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'])
 }
 
 WanderingCubes.defaultProps = {
   cubeSize: 7,
-  duration: '2s'
+  duration: '2s',
+  size: defaultSize,
+  timingFunction: 'ease-in-out'
 }
 
 export default WanderingCubes

@@ -60,6 +60,7 @@
     "lodash.memoize": "^4.0.3",
     "lodash.omitby": "^4.3.0",
     "lodash.range": "^3.1.4",
+    "performance-uuid": "^0.1.0",
     "react-fade": "0.0.3",
     "react-prefixr": "^0.1.0"
   },

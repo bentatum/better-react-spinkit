@@ -1,13 +1,11 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as animate } from './animate'
-import { default as Base } from './Base'
-
-const defaultSize = 16
+import { animate, animationName, defaults, preside } from '../util'
+import { default as Base } from '../Base'
+const defaultSize = 18
 
 const RotatingPlane = ({ color, duration, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'brsk-rotating-plane'
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+  const name = animationName('rotating-plane')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   return (
     <Base
       css={`
@@ -45,7 +43,7 @@ const RotatingPlane = ({ color, duration, size, ...props }, { betterReactSpinkit
       <div
         style={{
           ...animate({ name, duration }),
-          backgroundColor: color || betterReactSpinkit.color || defaultColor,
+          backgroundColor: preside(color, betterReactSpinkit.color, defaults.color),
           height: finalSize,
           width: finalSize
         }}
@@ -54,16 +52,26 @@ const RotatingPlane = ({ color, duration, size, ...props }, { betterReactSpinkit
     )
 }
 
-RotatingPlane.contextTypes = contextTypes
+RotatingPlane.contextTypes = defaults.contextTypes
 
 RotatingPlane.propTypes = {
+  /**
+   * The color of the spinner.
+   */
   color: PropTypes.string,
+  /**
+   * The duration of the animation.
+   */
   duration: PropTypes.string,
+  /**
+   * The size of the spinner.
+   */
   size: PropTypes.number
 }
 
 RotatingPlane.defaultProps = {
-  duration: '1.2s'
+  duration: '1.2s',
+  size: defaultSize
 }
 
 export default RotatingPlane

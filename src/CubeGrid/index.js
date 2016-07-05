@@ -1,25 +1,16 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as range } from 'lodash.range'
-import { default as animate } from './animate'
-import { default as Base } from './Base'
+import { default as Base } from '../Base'
 import { default as memoize } from 'lodash.memoize'
-
-const name = 'brsk-cube-grid'
-const defaultSize = 16
-
-const randomDelays = (total) => {
-  const delays = []
-  for (let i = 0; i < total; i++) {
-    delays.push((Math.random() * (1.0 - 0.1) + 0.1).toFixed(2))
-  }
-  return delays
-}
+import { default as range } from 'lodash.range'
+import { animate, animationName, defaults, preside } from '../util'
+import { default as randomDelays } from './randomDelays'
+const defaultSize = 18
 
 const memoizedRandomDelays = memoize(randomDelays)
 
 const CubeGrid = ({ color, col, size, row, ...props }, { betterReactSpinkit = {} }) => {
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+  const name = animationName('cube-grid')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const grid = {
     display: 'flex',
     flexFlow: 'row wrap',
@@ -28,7 +19,7 @@ const CubeGrid = ({ color, col, size, row, ...props }, { betterReactSpinkit = {}
   }
   const cube = {
     ...animate({ name }),
-    backgroundColor: color || betterReactSpinkit.color || defaultColor,
+    backgroundColor: preside(color, betterReactSpinkit.color, defaults.color),
     height: `${(100 / row)}%`,
     width: `${(100 / col)}%`
   }
@@ -80,17 +71,30 @@ const CubeGrid = ({ color, col, size, row, ...props }, { betterReactSpinkit = {}
   )
 }
 
-CubeGrid.contextTypes = contextTypes
+CubeGrid.contextTypes = defaults.contextTypes
 
 CubeGrid.defaultProps = {
   col: 3,
-  row: 3
+  row: 3,
+  size: defaultSize
 }
 
 CubeGrid.propTypes = {
+  /**
+   * The color of the tiles.
+   */
   color: PropTypes.string,
+  /**
+   * The amount of columns.
+   */
   col: PropTypes.number,
+  /**
+   * The amount of rows.
+   */
   row: PropTypes.number,
+  /**
+   * The size of the grid.
+   */
   size: PropTypes.number
 }
 

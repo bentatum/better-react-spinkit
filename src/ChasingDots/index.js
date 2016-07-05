@@ -1,13 +1,11 @@
 import { default as React, PropTypes } from 'react'
-import { default as animate } from './animate'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as Base } from './Base'
-
-const name = 'brsk-chasing-dots'
+import { animate, animationName, defaults, preside } from '../util'
+import { default as Base } from '../Base'
 const defaultSize = 18
 
 const ChasingDots = ({ color, dotSize, scaleEnd, scaleStart, size, ...props }, { betterReactSpinkit = {} }) => {
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+  const name = animationName('chasing-dots')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
     ...animate({ name: `${name}-rotate` }),
     height: finalSize,
@@ -16,7 +14,7 @@ const ChasingDots = ({ color, dotSize, scaleEnd, scaleStart, size, ...props }, {
   }
   const dot = {
     ...animate({ name: `${name}-bounce` }),
-    backgroundColor: color || betterReactSpinkit.color || defaultColor,
+    backgroundColor: color || betterReactSpinkit.color || defaults.color,
     borderRadius: '100%',
     display: 'inline-block',
     height: dotSize,
@@ -76,19 +74,35 @@ const ChasingDots = ({ color, dotSize, scaleEnd, scaleStart, size, ...props }, {
   )
 }
 
-ChasingDots.contextTypes = contextTypes
+ChasingDots.contextTypes = defaults.contextTypes
 
 ChasingDots.defaultProps = {
   dotSize: '45%',
   scaleEnd: 1,
-  scaleStart: 0
+  scaleStart: 0,
+  size: defaultSize
 }
 
 ChasingDots.propTypes = {
+  /**
+   * The color of the dots.
+   */
   color: PropTypes.string,
+  /**
+   * The maximum size of the dots.
+   */
   dotSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * End the animation with dots at x times the size value.
+   */
   scaleEnd: PropTypes.number,
+  /**
+   * Start the animation with dots at x times the size value.
+   */
   scaleStart: PropTypes.number,
+  /**
+   * The size of the spinner.
+   */
   size: PropTypes.number
 }
 

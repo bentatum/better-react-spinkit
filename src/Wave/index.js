@@ -1,14 +1,12 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as animate } from './animate'
+import { animate, animationName, defaults, preside } from '../util'
 import { default as range } from 'lodash.range'
-import { default as Base } from './Base'
-
+import { default as Base } from '../Base'
 const defaultSize = 35
 
 const Wave = ({ color, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'brsk-wave'
-  const finalSize = size || betterReactSpinkit.size || defaultSize
+  const name = animationName('wave')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -17,7 +15,7 @@ const Wave = ({ color, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, .
   }
   const column = {
     ...animate({ name }),
-    backgroundColor: color || betterReactSpinkit.color || defaultColor,
+    backgroundColor: color || betterReactSpinkit.color || defaults.color,
     height: '100%',
     width: columnWidth
   }
@@ -61,20 +59,36 @@ const Wave = ({ color, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, .
   )
 }
 
-Wave.contextTypes = contextTypes
+Wave.contextTypes = defaults.contextTypes
 
 Wave.defaultProps = {
   columnWidth: 5,
-  gutterWidth: 2,
+  gutterWidth: 1,
   scaleYEnd: 1,
-  scaleYStart: 0.4
+  scaleYStart: 0.4,
+  size: defaultSize
 }
 
 Wave.propTypes = {
+  /**
+   * The color of the spinner.
+   */
   color: PropTypes.string,
+  /**
+   * Width of the columns.
+   */
   columnWidth: PropTypes.number,
+  /**
+   * The pixel value between columns.
+   */
   gutterWidth: PropTypes.number,
+  /**
+   * Ending column height.
+   */
   scaleYEnd: PropTypes.number,
+  /**
+   * Starting column height.
+   */
   scaleYStart: PropTypes.number,
   size: PropTypes.number
 }

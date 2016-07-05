@@ -1,13 +1,12 @@
 import { default as React, PropTypes } from 'react'
-import { color as defaultColor, contextTypes } from './defaults'
-import { default as animate } from './animate'
-import { default as Base } from './Base'
+import { animate, animationName, defaults, preside } from '../util'
+import { default as Base } from '../Base'
 const defaultSize = 18
 
-const Wordpress = ({ color, innerColor, innerSize, size, ...props }, { betterReactSpinkit = {} }) => {
-  const name = 'brsk-wordpress'
-  const finalSize = size || betterReactSpinkit.size || defaultSize
-  const finalInnerSize = innerSize || finalSize / 4
+const Wordpress = ({ color, duration, innerColor, innerSize, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {
+  const name = animationName('wordpress')
+  const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
+  const finalInnerSize = preside(innerSize, null, finalSize / 4)
   const innerOffset = '18%'
   return (
     <Base
@@ -37,11 +36,8 @@ const Wordpress = ({ color, innerColor, innerSize, size, ...props }, { betterRea
     >
       <div
         style={{
-          ...animate({
-            name,
-            timingFunction: 'linear'
-          }),
-          backgroundColor: color || betterReactSpinkit.color || defaultColor,
+          ...animate({ name, timingFunction, duration }),
+          backgroundColor: preside(color, betterReactSpinkit.color, defaults.color),
           borderRadius: finalSize,
           display: 'inline-block',
           height: finalSize,
@@ -66,17 +62,37 @@ const Wordpress = ({ color, innerColor, innerSize, size, ...props }, { betterRea
   )
 }
 
-Wordpress.contextTypes = contextTypes
+Wordpress.contextTypes = defaults.contextTypes
 
 Wordpress.defaultProps = {
-  innerColor: '#fff'
+  duration: '2s',
+  innerColor: '#fff',
+  size: defaultSize,
+  timingFunction: 'linear'
 }
 
 Wordpress.propTypes = {
+  /**
+   * The color of the spinner.
+   */
   color: PropTypes.string,
-  size: PropTypes.number,
+  /**
+   * The duration of the animation.
+   */
+  duration: PropTypes.string,
+  /**
+   * The color of the inner circle.
+   */
   innerColor: PropTypes.string,
-  innerSize: PropTypes.number
+  /**
+   * The size of the inner circle.
+   */
+  innerSize: PropTypes.number,
+  /**
+   * The size of the spinner.
+   */
+  size: PropTypes.number,
+  timingFunction: PropTypes.oneOf(['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'])
 }
 
 export default Wordpress
