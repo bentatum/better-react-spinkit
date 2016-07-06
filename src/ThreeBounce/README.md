@@ -1,17 +1,33 @@
+### S
+
     <ThreeBounce />
 
-### gutter
+### M
 
-    <ThreeBounce gutter={10} />
+    <ThreeBounce size={50} />
+
+### L
+
+    <ThreeBounce size={100} />
+
+### gutter
+    
+    <div>
+        <ThreeBounce gutter={10} />
+        <br />
+        <ThreeBounce gutter={20} />
+        <br />
+        <ThreeBounce gutter={30} />
+    </div>
 
 ### scale
     
     <div>
+        <ThreeBounce scaleEnd={0.4} />
+        <br />
         <ThreeBounce scaleStart={0.4} />
         <br />
         <ThreeBounce scaleStart={1} scaleEnd={2} />
-        <br />
-        <ThreeBounce scaleStart={2} scaleEnd={4} />
     </div>
 
 ### timingFunction
@@ -28,14 +44,3 @@
         <ThreeBounce timingFunction='ease-in-out' />
     </div>
 
-### M
-
-    <ThreeBounce size={50} />
-
-### L
-
-    <ThreeBounce size={100} />
-
-### XL
-
-    <ThreeBounce size={250} />

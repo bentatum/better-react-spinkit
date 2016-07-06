@@ -71,8 +71,6 @@ const WanderingCubes = ({ color, cubeSize, duration, size, timingFunction, ...pr
   )
 }
 
-WanderingCubes.contextTypes = defaults.contextTypes
-
 WanderingCubes.propTypes = {
   /**
    *  The color of the spinner.
@@ -99,5 +97,7 @@ WanderingCubes.defaultProps = {
   size: defaultSize,
   timingFunction: 'ease-in-out'
 }
+
+WanderingCubes.contextTypes = defaults.contextTypes
 
 export default WanderingCubes

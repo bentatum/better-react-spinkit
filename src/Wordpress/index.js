@@ -62,15 +62,6 @@ const Wordpress = ({ color, duration, innerColor, innerSize, size, timingFunctio
   )
 }
 
-Wordpress.contextTypes = defaults.contextTypes
-
-Wordpress.defaultProps = {
-  duration: '2s',
-  innerColor: '#fff',
-  size: defaultSize,
-  timingFunction: 'linear'
-}
-
 Wordpress.propTypes = {
   /**
    * The color of the spinner.
@@ -94,5 +85,14 @@ Wordpress.propTypes = {
   size: PropTypes.number,
   timingFunction: PropTypes.oneOf(['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'])
 }
+
+Wordpress.defaultProps = {
+  duration: '2s',
+  innerColor: '#fff',
+  size: defaultSize,
+  timingFunction: 'linear'
+}
+
+Wordpress.contextTypes = defaults.contextTypes
 
 export default Wordpress

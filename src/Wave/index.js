@@ -2,9 +2,9 @@ import { default as React, PropTypes } from 'react'
 import { animate, animationName, defaults, preside } from '../util'
 import { default as range } from 'lodash.range'
 import { default as Base } from '../Base'
-const defaultSize = 35
+const defaultSize = 22
 
-const Wave = ({ color, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, ...props }, { betterReactSpinkit = {} }) => {
+const Wave = ({ color, columns, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, ...props }, { betterReactSpinkit = {} }) => {
   const name = animationName('wave')
   const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
@@ -44,13 +44,13 @@ const Wave = ({ color, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, .
       {...props}
     >
       <div style={outer}>
-        {range(6).map((index) =>
+        {range(columns).map((index) =>
           <div
             key={index}
             style={{
               ...column,
               ...animate({ delay: `-${index / 10}s` }),
-              marginRight: index !== 5 ? gutterWidth : 0
+              marginRight: index !== columns ? gutterWidth : 0
             }}
           />
         )}
@@ -59,25 +59,19 @@ const Wave = ({ color, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, .
   )
 }
 
-Wave.contextTypes = defaults.contextTypes
-
-Wave.defaultProps = {
-  columnWidth: 5,
-  gutterWidth: 1,
-  scaleYEnd: 1,
-  scaleYStart: 0.4,
-  size: defaultSize
-}
-
 Wave.propTypes = {
   /**
    * The color of the spinner.
    */
   color: PropTypes.string,
   /**
-   * Width of the columns.
+   * The amount of columns.
    */
-  columnWidth: PropTypes.number,
+  columns: PropTypes.number,
+  /**
+   * The width of each column.
+   */
+  columnWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * The pixel value between columns.
    */
@@ -90,7 +84,21 @@ Wave.propTypes = {
    * Starting column height.
    */
   scaleYStart: PropTypes.number,
+  /**
+   * The size of the spinner.
+   */
   size: PropTypes.number
 }
+
+Wave.defaultProps = {
+  columns: 5,
+  columnWidth: '20%',
+  gutterWidth: 1,
+  scaleYEnd: 1,
+  scaleYStart: 0.4,
+  size: defaultSize
+}
+
+Wave.contextTypes = defaults.contextTypes
 
 export default Wave
