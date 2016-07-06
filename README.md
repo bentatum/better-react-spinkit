@@ -71,4 +71,6 @@ Contributions welcome! Please read the [contributing guidelines](CONTRIBUTING.md
 
 [ISC](LICENSE.md)
 
-See the whole library in action [here](http://benjamintatum.com/better-react-spinkit).
+## Documentation
+
+👀 [docs](http://better-react-spinkit.benjamintatum.com/)
