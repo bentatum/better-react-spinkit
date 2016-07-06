@@ -1,16 +1,16 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { default as Container } from '../src/Container'
+import { default as Base } from '../src/Base'
 import { default as Fade } from 'react-fade'
 
 const renderer = TestUtils.createRenderer()
 
-describe('Container', () => {
+describe('Base', () => {
   let fade, outer, style
 
   beforeEach(() => {
-    renderer.render(<Container css='.testing { width: auto; }' />)
+    renderer.render(<Base css='.testing { width: auto; }' />)
     outer = renderer.getRenderOutput()
     style = outer.props.children[0]
     fade = outer.props.children[1]

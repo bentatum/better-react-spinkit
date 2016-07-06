@@ -1,16 +1,16 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { Pulse } from '../src'
+import { FoldingCube } from '../src'
 import { default as Base } from '../src/Base'
 
 const renderer = TestUtils.createRenderer()
 
-describe('Pulse', () => {
+describe('FoldingCube', () => {
   let tree
 
   beforeEach(() => {
-    renderer.render(<Pulse />)
+    renderer.render(<FoldingCube />)
     tree = renderer.getRenderOutput()
   })
 

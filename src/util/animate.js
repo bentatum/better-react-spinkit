@@ -1,5 +1,5 @@
-import omitBy from 'lodash.omitby'
-import prefixr from 'react-prefixr'
+import { default as omitBy } from 'lodash.omitby'
+import { default as prefixr } from 'react-prefixr'
 
 export default ({ delay, duration, fillMode, iterationCount, name, timingFunction }) => {
   if (name) {
