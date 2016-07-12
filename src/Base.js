@@ -1,9 +1,10 @@
 import { default as React, PropTypes } from 'react'
 import { default as Fade } from 'react-fade'
+import { default as minifyCss } from 'minify-css-string'
 
 const Base = ({ css, children, fadeIn, ...props }) =>
   <span {...props}>
-    <style dangerouslySetInnerHTML={{ __html: css.replace(/\n/g, '').replace(/\s\s+/g, ' ') }} />
+    <style children={minifyCss(css)} />
     <Choose>
       <When condition={fadeIn}>
         <Fade in>
