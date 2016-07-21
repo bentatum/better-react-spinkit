@@ -2,7 +2,7 @@ import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
 import { default as Circle } from '..'
-import { default as BaseCircle } from '../../BaseCircle'
+import { default as BaseCircle } from '../../Base/Circle'
 
 const renderer = TestUtils.createRenderer()
 

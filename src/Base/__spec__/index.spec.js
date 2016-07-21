@@ -1,7 +1,7 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { default as Base } from '../Base'
+import { default as Base } from '..'
 import { default as Fade } from 'react-fade'
 
 const renderer = TestUtils.createRenderer()

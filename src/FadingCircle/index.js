@@ -1,5 +1,5 @@
 import { default as React, PropTypes } from 'react'
-import { default as BaseCircle } from '../BaseCircle'
+import { default as BaseCircle } from '../Base/Circle'
 import { animationName } from '../util'
 const defaultSize = 22
 
@@ -47,6 +47,10 @@ FadingCircle.propTypes = {
    * The ending opacity value.
    */
   endOpacity: PropTypes.number,
+  fade: PropTypes.shape({
+    duration: PropTypes.number,
+    out: PropTypes.bool
+  }),
   /**
    * The starting opacity value.
    */

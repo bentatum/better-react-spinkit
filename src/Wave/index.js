@@ -72,6 +72,10 @@ Wave.propTypes = {
    * The width of each column.
    */
   columnWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  fade: PropTypes.shape({
+    duration: PropTypes.number,
+    out: PropTypes.bool
+  }),
   /**
    * The pixel value between columns.
    */
