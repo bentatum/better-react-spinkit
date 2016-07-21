@@ -2,12 +2,12 @@ import { default as React, PropTypes } from 'react'
 import { default as Fade } from 'react-fade'
 import { default as minifyCss } from 'minify-css-string'
 
-const Base = ({ css, children, fadeIn, ...props }) =>
+const Base = ({ css, children, fade, ...props }) =>
   <span {...props}>
     <style children={minifyCss(css)} />
     <Choose>
-      <When condition={fadeIn}>
-        <Fade in>
+      <When condition={fade}>
+        <Fade {...fade}>
           {children}
         </Fade>
       </When>
@@ -20,11 +20,17 @@ const Base = ({ css, children, fadeIn, ...props }) =>
 Base.propTypes = {
   children: PropTypes.node,
   css: PropTypes.string.isRequired,
-  fadeIn: PropTypes.bool
+  fade: PropTypes.shape({
+    duration: PropTypes.number,
+    out: PropTypes.bool
+  })
 }
 
 Base.defaultProps = {
-  fadeIn: true
+  fade: {
+    duration: 1.5,
+    out: false
+  }
 }
 
 export default Base

@@ -1,16 +1,16 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { Wave } from '../src'
-import { default as Base } from '../src/Base'
+import { default as Pulse } from '..'
+import { default as Base } from '../../Base'
 
 const renderer = TestUtils.createRenderer()
 
-describe('Wave', () => {
+describe('Pulse', () => {
   let tree
 
   beforeEach(() => {
-    renderer.render(<Wave />)
+    renderer.render(<Pulse />)
     tree = renderer.getRenderOutput()
   })
 

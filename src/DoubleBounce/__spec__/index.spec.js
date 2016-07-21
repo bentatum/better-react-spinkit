@@ -1,8 +1,8 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { DoubleBounce } from '../src'
-import { default as Base } from '../src/Base'
+import { default as DoubleBounce } from '..'
+import { default as Base } from '../../Base'
 
 const renderer = TestUtils.createRenderer()
 

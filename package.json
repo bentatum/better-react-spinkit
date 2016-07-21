@@ -1,14 +1,14 @@
 {
   "name": "better-react-spinkit",
   "description": "A collection of loading indicators animated with CSS for React",
-  "version": "2.0.0-1",
+  "version": "2.0.0-2",
   "author": "Ben Tatum <bentatum@me.com>",
   "scripts": {
     "lint": "standard",
     "prebuild": "rm -rf dist",
     "build": "babel -d dist/ src/",
     "prepublish": "npm run lint && npm run test && npm run build",
-    "test": "npm run lint && mocha spec --compilers js:babel-register"
+    "test": "npm run lint && mocha ./**/__spec__/*.spec.js --compilers js:babel-register"
   },
   "bugs": {
     "url": "https://github.com/bentatum/better-react-spinkit/issues"
@@ -81,7 +81,7 @@
   },
   "standard": {
     "globals": [
-      "$",
+      "context",
       "beforeEach",
       "describe",
       "it",

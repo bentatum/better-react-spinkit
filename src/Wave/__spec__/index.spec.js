@@ -1,20 +1,20 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { Circle } from '../src'
-import { default as BaseCircle } from '../src/BaseCircle'
+import { default as Wave } from '..'
+import { default as Base } from '../../Base'
 
 const renderer = TestUtils.createRenderer()
 
-describe('Circle', () => {
+describe('Wave', () => {
   let tree
 
   beforeEach(() => {
-    renderer.render(<Circle />)
+    renderer.render(<Wave />)
     tree = renderer.getRenderOutput()
   })
 
   it('renders a container', () => {
-    expect(tree.type).toEqual(BaseCircle)
+    expect(tree.type).toEqual(Base)
   })
 })

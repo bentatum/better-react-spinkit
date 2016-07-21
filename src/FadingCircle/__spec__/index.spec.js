@@ -1,20 +1,20 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { Wordpress } from '../src'
-import { default as Base } from '../src/Base'
+import { default as FadingCircle } from '..'
+import { default as BaseCircle } from '../../BaseCircle'
 
 const renderer = TestUtils.createRenderer()
 
-describe('Wordpress', () => {
+describe('FadingCircle', () => {
   let tree
 
   beforeEach(() => {
-    renderer.render(<Wordpress />)
+    renderer.render(<FadingCircle />)
     tree = renderer.getRenderOutput()
   })
 
   it('renders a container', () => {
-    expect(tree.type).toEqual(Base)
+    expect(tree.type).toEqual(BaseCircle)
   })
 })

@@ -1,16 +1,16 @@
 import { default as React } from 'react'
 import { default as TestUtils } from 'react-addons-test-utils'
 import { default as expect } from 'expect'
-import { ThreeBounce } from '../src'
-import { default as Base } from '../src/Base'
+import { default as CubeGrid } from '..'
+import { default as Base } from '../../Base'
 
 const renderer = TestUtils.createRenderer()
 
-describe('ThreeBounce', () => {
+describe('CubeGrid', () => {
   let tree
 
   beforeEach(() => {
-    renderer.render(<ThreeBounce />)
+    renderer.render(<CubeGrid />)
     tree = renderer.getRenderOutput()
   })
 
