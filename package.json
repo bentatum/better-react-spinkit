@@ -62,8 +62,7 @@
     "lodash.omitby": "^4.3.0",
     "lodash.range": "^3.1.4",
     "minify-css-string": "^1.0.0",
-    "performance-uuid": "^0.1.0",
-    "react-fade": "^1.1.1"
+    "performance-uuid": "^0.1.0"
   },
   "peerDependencies": {
     "inline-style-prefixer": "^2.0.1"
