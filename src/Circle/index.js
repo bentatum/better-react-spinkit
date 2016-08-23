@@ -47,10 +47,6 @@ Circle.propTypes = {
    * The color of the spinner.
    */
   color: PropTypes.string,
-  fade: PropTypes.shape({
-    duration: PropTypes.number,
-    out: PropTypes.bool
-  }),
   /**
    * End the animation with dots at x times the size value.
    */

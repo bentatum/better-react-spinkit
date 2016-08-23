@@ -82,10 +82,6 @@ ThreeBounce.propTypes = {
    * The speed of the animation.
    */
   duration: PropTypes.string,
-  fade: PropTypes.shape({
-    duration: PropTypes.number,
-    out: PropTypes.bool
-  }),
   /**
    * The pixel value between dots.
    */

@@ -88,10 +88,6 @@ CubeGrid.propTypes = {
    * The amount of columns.
    */
   col: PropTypes.number,
-  fade: PropTypes.shape({
-    duration: PropTypes.number,
-    out: PropTypes.bool
-  }),
   /**
    * The amount of rows.
    */

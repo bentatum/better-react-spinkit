@@ -71,10 +71,6 @@ Wordpress.propTypes = {
    * The duration of the animation.
    */
   duration: PropTypes.string,
-  fade: PropTypes.shape({
-    duration: PropTypes.number,
-    out: PropTypes.bool
-  }),
   /**
    * The color of the inner circle.
    */
