@@ -92,10 +92,6 @@ ChasingDots.propTypes = {
    * The maximum size of the dots.
    */
   dotSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  fade: PropTypes.shape({
-    duration: PropTypes.number,
-    out: PropTypes.bool
-  }),
   /**
    * End the animation with dots at x times the size value.
    */

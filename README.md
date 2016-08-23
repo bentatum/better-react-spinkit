@@ -1,10 +1,12 @@
 # better-react-spinkit
 
 [![npm][npm-image]][npm-url]
+[![npm][npm-downloads-image]][npm-url]
 [![travis][travis-image]][travis-url]
 [![standard][standard-image]][standard-url]
 
 [npm-image]: https://img.shields.io/npm/v/better-react-spinkit.svg?style=flat-square
+[npm-downloads-image]: https://img.shields.io/npm/dt/better-react-spinkit.svg?maxAge=2592000
 [npm-url]: https://www.npmjs.com/package/better-react-spinkit
 [travis-image]: https://img.shields.io/travis/bentatum/better-react-spinkit.svg?style=flat-square
 [travis-url]: https://travis-ci.org/bentatum/better-react-spinkit

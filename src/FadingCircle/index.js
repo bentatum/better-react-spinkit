@@ -47,10 +47,6 @@ FadingCircle.propTypes = {
    * The ending opacity value.
    */
   endOpacity: PropTypes.number,
-  fade: PropTypes.shape({
-    duration: PropTypes.number,
-    out: PropTypes.bool
-  }),
   /**
    * The starting opacity value.
    */
