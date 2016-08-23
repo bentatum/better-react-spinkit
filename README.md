@@ -1,7 +1,7 @@
 # better-react-spinkit
 
 [![npm][npm-image]][npm-url]
-[![npm](npm-downloads-image)]()
+[![npm][npm-downloads-image]][npm-url]
 [![travis][travis-image]][travis-url]
 [![standard][standard-image]][standard-url]
 
