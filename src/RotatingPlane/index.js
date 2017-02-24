@@ -49,7 +49,7 @@ const RotatingPlane = ({ color, duration, size, ...props }, { betterReactSpinkit
         }}
       />
     </Base>
-    )
+  )
 }
 
 RotatingPlane.contextTypes = defaults.contextTypes

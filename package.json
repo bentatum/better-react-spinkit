@@ -1,10 +1,13 @@
 {
   "name": "better-react-spinkit",
   "description": "A collection of loading indicators animated with CSS for React",
-  "version": "2.0.0-5",
+  "version": "2.0.0-6",
   "author": "Ben Tatum <bentatum@me.com>",
   "scripts": {
-    "lint": "standard",
+    "lint": "standard --fix",
+    "precommit": "npm test",
+    "prepush": "npm test",
+    "commitmsg": "validate-commit-msg",
     "prebuild": "rm -rf dist",
     "build": "babel -d dist/ src/",
     "prepublish": "npm run lint && npm run test && npm run build",
@@ -15,7 +18,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.2.0",
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.1.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.4.0",
     "babel-preset-es2015": "^6.1.18",
@@ -23,15 +26,16 @@
     "babel-preset-stage-1": "^6.3.13",
     "babel-register": "^6.9.0",
     "commitizen": "^2.8.2",
-    "cz-conventional-changelog": "^1.1.6",
+    "cz-conventional-changelog": "^2.0.0",
     "eslint-plugin-jsx-control-statements": "^2.1.1",
     "expect": "^1.20.2",
-    "ghooks": "^1.3.2",
+    "ghooks": "^2.0.0",
     "jsx-control-statements": "^3.1.2",
-    "mocha": "^2.4.5",
-    "react": "^15.2.1",
-    "react-addons-test-utils": "^15.2.1",
-    "standard": "^7.1.0",
+    "mocha": "^3.2.0",
+    "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "standard": "^8.6.0",
     "validate-commit-msg": "^2.6.1"
   },
   "homepage": "https://github.com/bentatum/better-react-spinkit",
@@ -57,7 +61,8 @@
     "url": "https://github.com/bentatum/better-react-spinkit.git"
   },
   "dependencies": {
-    "inline-style-prefixer": "^2.0.1",
+    "husky": "^0.13.1",
+    "inline-style-prefixer": "^3.0.0",
     "lodash.memoize": "^4.0.3",
     "lodash.omitby": "^4.3.0",
     "lodash.range": "^3.1.4",
@@ -88,11 +93,6 @@
     "parser": "babel-eslint"
   },
   "config": {
-    "ghooks": {
-      "pre-commit": "npm test",
-      "pre-push": "npm test",
-      "commit-msg": "validate-commit-msg"
-    },
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     },
