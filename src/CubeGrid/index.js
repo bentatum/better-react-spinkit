@@ -1,4 +1,5 @@
-import { default as React, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import { default as React } from 'react'
 import { default as Base } from '../Base'
 import { default as memoize } from 'lodash.memoize'
 import { default as range } from 'lodash.range'
