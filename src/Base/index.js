@@ -1,5 +1,6 @@
 
-import { default as React, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import { default as React } from 'react'
 import { default as minifyCss } from 'minify-css-string'
 
 const Base = ({ css, children, ...props }) =>

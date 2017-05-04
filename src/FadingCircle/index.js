@@ -1,4 +1,5 @@
-import { default as React, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import { default as React } from 'react'
 import { default as BaseCircle } from '../Base/Circle'
 import { animationName } from '../util'
 const defaultSize = 22

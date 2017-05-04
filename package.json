@@ -67,7 +67,8 @@
     "lodash.omitby": "^4.3.0",
     "lodash.range": "^3.1.4",
     "minify-css-string": "^1.0.0",
-    "performance-uuid": "^0.1.0"
+    "performance-uuid": "^0.1.0",
+    "prop-types": "^15.5.8"
   },
   "babel": {
     "presets": [
