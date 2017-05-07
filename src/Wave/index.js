@@ -7,7 +7,7 @@ import { animate, animationName, defaults, preside } from '../util'
 
 const defaultSize = 22
 
-const Wave = ({ color, columns, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, ...props }, { betterReactSpinkit = {} }) => {
+const Wave = ({ color, columns, columnWidth, gutterWidth, reverse, scaleYEnd, scaleYStart, size, ...props }, { betterReactSpinkit = {} }) => {
   const name = animationName('wave')
   const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
   const outer = {
@@ -22,6 +22,7 @@ const Wave = ({ color, columns, columnWidth, gutterWidth, scaleYEnd, scaleYStart
     height: '100%',
     width: columnWidth
   }
+  const cols = (reverse) ? range(columns).reverse() : range(columns)
   return (
     <Base
       css={`
@@ -47,7 +48,7 @@ const Wave = ({ color, columns, columnWidth, gutterWidth, scaleYEnd, scaleYStart
       {...props}
     >
       <div style={outer}>
-        {range(columns).map((index) =>
+        {cols.map((index) =>
           <div
             key={index}
             style={{
@@ -80,6 +81,10 @@ Wave.propTypes = {
    */
   gutterWidth: PropTypes.number,
   /**
+   * Reverse the animation.
+   */
+  reverse: PropTypes.bool,
+  /**
    * Ending column height.
    */
   scaleYEnd: PropTypes.number,
@@ -97,6 +102,7 @@ Wave.defaultProps = {
   columns: 5,
   columnWidth: '20%',
   gutterWidth: 1,
+  reverse: false,
   scaleYEnd: 1,
   scaleYStart: 0.4,
   size: defaultSize
