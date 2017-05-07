@@ -1,9 +1,12 @@
-import { default as React, PropTypes } from 'react'
-import { default as Base } from '../Base'
-import { default as range } from 'lodash.range'
+
+import React from 'react'
+import Base from '../Base'
+import { range } from 'lodash'
+import PropTypes from 'prop-types'
+import cubeDelay from './cubeDelay'
+import cubeRotateZ from './cubeRotateZ'
 import { animate, animationName, defaults, preside } from '../util'
-import { default as cubeRotateZ } from './cubeRotateZ'
-import { default as cubeDelay } from './cubeDelay'
+
 const defaultSize = 18
 
 const FoldingCube = ({ color, duration, secondBounceDelay, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {

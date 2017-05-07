@@ -1,4 +1,5 @@
-import { default as omitBy } from 'lodash.omitby'
+
+import { omitBy } from 'lodash'
 import { default as Prefixer } from 'inline-style-prefixer'
 const prefixer = new Prefixer()
 

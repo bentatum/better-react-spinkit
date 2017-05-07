@@ -1,7 +1,10 @@
-import { default as React, PropTypes } from 'react'
+
+import React from 'react'
+import Base from '../Base'
+import { range } from 'lodash'
+import PropTypes from 'prop-types'
 import { animate, animationName, defaults, preside } from '../util'
-import { default as range } from 'lodash.range'
-import { default as Base } from '../Base'
+
 const defaultSize = 22
 
 const Wave = ({ color, columns, columnWidth, gutterWidth, scaleYEnd, scaleYStart, size, ...props }, { betterReactSpinkit = {} }) => {

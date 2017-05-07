@@ -1,11 +1,12 @@
-import { default as React, PropTypes } from 'react'
-import { default as Base } from '../Base'
-import { default as memoize } from 'lodash.memoize'
-import { default as range } from 'lodash.range'
-import { animate, animationName, defaults, preside } from '../util'
-import { default as randomDelays } from './randomDelays'
-const defaultSize = 18
 
+import React from 'react'
+import Base from '../Base'
+import PropTypes from 'prop-types'
+import { range, memoize } from 'lodash'
+import randomDelays from './randomDelays'
+import { animate, animationName, defaults, preside } from '../util'
+
+const defaultSize = 18
 const memoizedRandomDelays = memoize(randomDelays)
 
 const CubeGrid = ({ color, col, size, row, ...props }, { betterReactSpinkit = {} }) => {

@@ -1,6 +1,8 @@
-import { default as React, PropTypes } from 'react'
-import { default as range } from 'lodash.range'
-import { default as Base } from '.'
+
+import Base from '.'
+import React from 'react'
+import { range } from 'lodash'
+import PropTypes from 'prop-types'
 import { animate, defaults, preside } from '../util'
 import Prefixer from 'inline-style-prefixer'
 const prefixer = new Prefixer()

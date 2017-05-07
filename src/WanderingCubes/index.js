@@ -1,6 +1,9 @@
-import { default as React, PropTypes } from 'react'
-import { default as Base } from '../Base'
+
+import React from 'react'
+import Base from '../Base'
+import PropTypes from 'prop-types'
 import { animate, animationName, defaults, preside } from '../util'
+
 const defaultSize = 16
 
 const WanderingCubes = ({ color, cubeSize, duration, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {

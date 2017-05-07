@@ -1,6 +1,7 @@
 
-import { default as React, PropTypes } from 'react'
-import { default as minifyCss } from 'minify-css-string'
+import React from 'react'
+import PropTypes from 'prop-types'
+import minifyCss from 'minify-css-string'
 
 const Base = ({ css, children, ...props }) =>
   <span {...props}>

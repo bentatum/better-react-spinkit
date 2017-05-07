@@ -1,6 +1,9 @@
-import { default as React, PropTypes } from 'react'
-import { default as BaseCircle } from '../Base/Circle'
+
+import React from 'react'
+import PropTypes from 'prop-types'
+import BaseCircle from '../Base/Circle'
 import { animationName } from '../util'
+
 const defaultSize = 22
 
 const FadingCircle = ({ startOpacity, endOpacity, ...props }) => {
