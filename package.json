@@ -18,8 +18,7 @@
   },
   "dependencies": {
     "inline-style-prefixer": "^3.0.3",
-    "minify-css-string": "^1.0.0",
-    "performance-uuid": "^0.1.0"
+    "minify-css-string": "^1.0.0"
   },
   "peerDependencies": {
     "prop-types": "^15.5.8",
