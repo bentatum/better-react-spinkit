@@ -1,7 +1,6 @@
 
 import { omitBy } from 'lodash'
-import { default as Prefixer } from 'inline-style-prefixer'
-const prefixer = new Prefixer()
+import prefix from 'inline-style-prefixer/static'
 
 export default ({ delay, duration, fillMode, iterationCount, name, timingFunction }) => {
   if (name) {
@@ -19,7 +18,7 @@ export default ({ delay, duration, fillMode, iterationCount, name, timingFunctio
     /* eslint-enable no-param-reassign */
   }
 
-  return prefixer.prefix(omitBy({
+  return prefix(omitBy({
     animationDelay: delay,
     animationDuration: duration,
     animationFillMode: fillMode,
