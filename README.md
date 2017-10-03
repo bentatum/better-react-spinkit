@@ -4,7 +4,6 @@
 [![npm][npm-downloads-image]][npm-url]
 [![travis][travis-image]][travis-url]
 [![standard][standard-image]][standard-url]
-[![bitcoin][bitcoin-image]][bitcoin-url]
 
 [npm-image]: https://img.shields.io/npm/v/better-react-spinkit.svg?style=flat-square
 [npm-downloads-image]: https://img.shields.io/npm/dt/better-react-spinkit.svg?maxAge=2592000
@@ -13,8 +12,6 @@
 [travis-url]: https://travis-ci.org/bentatum/better-react-spinkit
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
-[bitcoin-image]: https://img.shields.io/badge/donate-bitcoin-blue.svg
-[bitcoin-url]: https://www.coinbase.com/bentatum
 
 A collection of loading indicators animated with CSS, powered by React.
 
