@@ -15,6 +15,10 @@
 
 A collection of loading indicators animated with CSS, powered by React.
 
+Donate BTC: 1H7dDZeisBvvnJZtXJ7f5TCqNv2W3MnRN2
+Donate ETH: 0x1f086e2004E23362d61670176E5908Dc4186a654
+Donate LTC: LQJsuBUg1kPrxJT7KWjcAFVQaDsY7h1f6B
+
 ## Install
 `npm i better-react-spinkit`
 
