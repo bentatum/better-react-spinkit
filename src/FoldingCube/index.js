@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Base from '../Base'
-import { range } from 'lodash'
+import range from 'lodash.range'
 import PropTypes from 'prop-types'
 import cubeDelay from './cubeDelay'
 import cubeRotateZ from './cubeRotateZ'
