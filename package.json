@@ -21,8 +21,8 @@
     "minify-css-string": "^1.0.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.8",
-    "react": "^15.5.4",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
@@ -44,9 +44,9 @@
     "lodash": "^4.17.4",
     "mocha": "^3.3.0",
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-addons-test-utils": "^15.5.1",
-    "react-dom": "^15.5.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "standard": "^10.0.2",
     "validate-commit-msg": "^2.12.1"
   },
