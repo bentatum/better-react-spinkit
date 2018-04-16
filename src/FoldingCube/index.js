@@ -9,9 +9,10 @@ import { animate, animationName, defaults, preside } from '../util'
 
 const defaultSize = 18
 
-const FoldingCube = ({ color, duration, secondBounceDelay, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {
+const FoldingCube = ({ color, borderStyle, spacing, duration, secondBounceDelay, size, timingFunction, ...props }, { betterReactSpinkit = {} }) => {
   const name = animationName('folding-cube')
   const finalSize = preside(size, betterReactSpinkit.size, defaultSize)
+  const cubeSize = `calc(50% - ${spacing * 2}px)`
   const outer = {
     height: finalSize,
     padding: finalSize / 4,
@@ -22,9 +23,10 @@ const FoldingCube = ({ color, duration, secondBounceDelay, size, timingFunction,
   }
   const cube = {
     float: 'left',
-    height: '50%',
     position: 'relative',
-    width: '50%',
+    height: cubeSize,
+    width: cubeSize,
+    margin: spacing,
     WebkitTransform: 'scale(1.1)',
     MsTransform: 'scale(1.1)',
     transform: 'scale(1.1)'
@@ -37,6 +39,7 @@ const FoldingCube = ({ color, duration, secondBounceDelay, size, timingFunction,
     width: '100%',
     height: '100%',
     backgroundColor: preside(color, betterReactSpinkit.color, defaults.color),
+    border: borderStyle,
     WebkitTransformOrigin: '100% 100%',
     MsTransformOrigin: '100% 100%',
     TransformOrigin: '100% 100%'
@@ -113,7 +116,9 @@ FoldingCube.contextTypes = defaults.contextTypes
 FoldingCube.defaultProps = {
   duration: '2.4s',
   size: defaultSize,
-  timingFunction: 'linear'
+  timingFunction: 'linear',
+  borderStyle: 'none',
+  spacing: 0
 }
 
 FoldingCube.propTypes = {
@@ -129,7 +134,15 @@ FoldingCube.propTypes = {
    * The size of the spinner.
    */
   size: PropTypes.number,
-  timingFunction: PropTypes.oneOf(['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'])
+  timingFunction: PropTypes.oneOf(['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out']),
+  /**
+  * Optional border style
+  */
+  borderStyle: PropTypes.string,
+  /**
+  * Optional spacing between cubes
+  **/
+  spacing: PropTypes.number
 }
 
 export default FoldingCube
