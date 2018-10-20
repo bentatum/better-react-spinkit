@@ -1,9 +1,9 @@
 import { default as React } from 'react'
-import { default as TestUtils } from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import { default as expect } from 'expect'
 import { default as Base } from '..'
 
-const renderer = TestUtils.createRenderer()
+const renderer = createRenderer()
 
 describe('Base', () => {
   let outer, style
