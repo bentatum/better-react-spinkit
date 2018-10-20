@@ -2,7 +2,8 @@
 import React from 'react'
 import Base from '../Base'
 import PropTypes from 'prop-types'
-import { range, memoize } from 'lodash'
+import range from 'lodash.range'
+import memoize from 'lodash.memoize'
 import randomDelays from './randomDelays'
 import { animate, animationName, defaults, preside } from '../util'
 
