@@ -10,8 +10,9 @@
     "commitmsg": "validate-commit-msg",
     "prebuild": "rm -rf dist",
     "build": "babel -d dist/ src/",
-    "prepublish": "npm run lint && npm run test && npm run build",
-    "test": "npm run lint && mocha src/**/__spec__/*.spec.js --compilers js:babel-register"
+    "test": "npm run lint && mocha src/**/__spec__/*.spec.js --compilers js:babel-register",
+    "preversion": "yarn test",
+    "postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
   },
   "bugs": {
     "url": "https://github.com/bentatum/better-react-spinkit/issues"
