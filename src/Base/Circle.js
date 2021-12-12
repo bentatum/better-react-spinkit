@@ -1,7 +1,7 @@
 
 import Base from '.'
 import React from 'react'
-import { range } from 'lodash'
+import range from 'lodash.range'
 import PropTypes from 'prop-types'
 import { animate, defaults, preside } from '../util'
 import Prefixer from 'inline-style-prefixer'
