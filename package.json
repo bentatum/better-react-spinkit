@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
-    "react": "^16.2.0",
+    "react": "^16.2.0 || ^17.0.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
